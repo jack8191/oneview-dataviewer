@@ -1,9 +1,14 @@
 import React from 'react';
-import {shallow, mount} from 'enzyme'
-import App from '../App';
+import {shallow} from 'enzyme'
+import {App} from '../App';
+import TableViewer from '../TableViewer'
 
 describe('<App />', () => {
   it('renders without crashing', () => {
     shallow(<App />)
   });
+  it('renders the TableViewer', () => {
+    const wrapper = shallow(<App/>)
+    expect(wrapper.find(<TableViewer/>))
+  })
 })
