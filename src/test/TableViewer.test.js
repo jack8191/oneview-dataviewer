@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme'
-import TableViewer from '../TableViewer'
+import TableViewer from '../components/TableViewer'
 
 const userData = [
     {
