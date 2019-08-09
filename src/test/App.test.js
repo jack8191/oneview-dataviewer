@@ -3,7 +3,7 @@ import {shallow} from 'enzyme'
 import {App} from '../components/App';
 import TableViewer from '../components/TableViewer'
 import TableViewButton from '../components/TableViewButton'
-import ErrorMessage from '../components/ErrorMessage'
+import Message from '../components/Message'
 
 describe('<App />', () => {
   it('renders without crashing', () => {
@@ -19,6 +19,6 @@ describe('<App />', () => {
   })
   it('renders the ErrorMessage', () => {
     const wrapper = shallow(<App />)
-    expect (wrapper.find(<ErrorMessage />))
+    expect (wrapper.find(<Message />))
   })
 })

@@ -3,6 +3,8 @@ import {
     FETCH_USERS_SUCCESS,
     fetchUsersFailure,
     FETCH_USERS_FAILURE,
+    FETCH_USERS_SUBMITTING,
+    fetchUsersSubmitting,
     fetchUsers
 }
 from '../actions/app-actions'
@@ -25,8 +27,15 @@ describe('fetchUsersFailure', () => {
     })
 })
 
+describe('fetchUsersSubmitting', () => {
+    it('should return the action', () => {
+        const action = fetchUsersSubmitting()
+        expect(action.type).toEqual(FETCH_USERS_SUBMITTING)
+    })
+})
+
 describe('fetchUsers', () => {
-    it('should dispatch fetchUsersSuccess on a sucessful api call', () => {
+    it('should dispatch the actions on a sucessful api call', () => {
         const userList = {
             users: 'a list of users'
         }
@@ -41,6 +50,7 @@ describe('fetchUsers', () => {
         const dispatch = jest.fn()
         return fetchUsers()(dispatch).then(() => {
             expect(dispatch).toHaveBeenCalledWith(fetchUsersSuccess(userList))
+            expect(dispatch).toHaveBeenCalledWith(fetchUsersSubmitting())
         })
     })
 })

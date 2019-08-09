@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import TableViewer from './TableViewer.js'
 import TableViewButton from './TableViewButton'
-import ErrorMessage from './ErrorMessage'
+import Message from './Message'
 import {fetchUsers} from '../actions/app-actions'
 
 export class App extends Component {
@@ -13,7 +13,7 @@ export class App extends Component {
     return (
       <div className="App">
         <TableViewButton onClick={e => this.onClick(e)}/>
-        <ErrorMessage error={this.props.error}/>
+        <Message error={this.props.error} submitting={this.props.submitting}/>
         <TableViewer data={this.props.data}/>
       </div>
     );
@@ -23,7 +23,8 @@ export class App extends Component {
 
 const mapStatetoProps = state => ({
   data: state.data,
-  error: state.error
+  error: state.error,
+  submitting: state.submitting
 })
 
 export default connect(mapStatetoProps)(App);

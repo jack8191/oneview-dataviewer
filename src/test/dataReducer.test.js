@@ -2,7 +2,8 @@ import {dataReducer} from '../reducers/dataReducer'
 
 import {
     fetchUsersSuccess,
-    fetchUsersFailure
+    fetchUsersFailure,
+    fetchUsersSubmitting
 } from '../actions/app-actions'
 
 describe('dataReducer', () => {
@@ -10,7 +11,8 @@ describe('dataReducer', () => {
         const state = dataReducer(undefined, {type: '__UNKNOWN'})
         expect(state).toEqual({
             data: null,
-            error: false
+            error: false,
+            submitting: false
         })
     })
     describe('fetchUsersSuccess', () => {
@@ -28,6 +30,13 @@ describe('dataReducer', () => {
             let state
             state = dataReducer(state, fetchUsersFailure())
             expect(state.error).toEqual(true)
+        })
+    })
+    describe('fetchUsersSubmitting', () => {
+        it('should add submitting:true to the state', () => {
+            let state
+            state = dataReducer(state, fetchUsersSubmitting())
+            expect(state.submitting).toEqual(true)
         })
     })
 })
