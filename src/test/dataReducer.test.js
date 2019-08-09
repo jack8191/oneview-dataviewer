@@ -16,20 +16,22 @@ describe('dataReducer', () => {
         })
     })
     describe('fetchUsersSuccess', () => {
-        it('should add user data to the state', () => {
+        it('should add user data to the state and set submitting to false', () => {
             const userData = {
                 users: 'a bunch of user data'
             }
             let state
             state = dataReducer(state, fetchUsersSuccess(userData))
             expect(state.data).toEqual(userData)
+            expect(state.submitting).toEqual(false)
         })
     })
     describe('fetchUsersFailure', () => {
-        it('should add error: true to the state', () => {
+        it('should add error: true to the state and set submitting to false', () => {
             let state
             state = dataReducer(state, fetchUsersFailure())
             expect(state.error).toEqual(true)
+            expect(state.submitting).toEqual(false)
         })
     })
     describe('fetchUsersSubmitting', () => {
