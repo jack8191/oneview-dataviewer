@@ -53,4 +53,15 @@ describe('fetchUsers', () => {
             expect(dispatch).toHaveBeenCalledWith(fetchUsersSubmitting())
         })
     })
+    it('should dispatch the correct action on a failed api call', () => {
+        global.fetch = jest.fn().mockImplementation(() => 
+            Promise.resolve({
+                ok: false
+            })
+        )
+        const dispatch = jest.fn()
+        return fetchUsers()(dispatch).catch(() => {
+            expect(dispatch).toHaveBeenCalledWith(fetchUsersFailure())
+        })
+    })
 })
